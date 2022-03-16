@@ -10,6 +10,7 @@ let tonePlaying = false;
 let volume = 0.5;  //must be between 0.0 and 1.0
 let guessCounter = 0;
 
+//randomizing the pattern
 function randomize(){
   pattern = [];
   for(let i = 0; i < 8; i++){
