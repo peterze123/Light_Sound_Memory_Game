@@ -4,22 +4,22 @@ const cluePauseTime = 333; //how long to pause in between clues
 const nextClueWaitTime = 1000; //how long to wait before starting playback of the clue sequence
 //Global Variables
 let pattern = [];
-let progress = 0; 
+let progress = 0;
 let gamePlaying = false;
 let tonePlaying = false;
-let volume = 0.5;  //must be between 0.0 and 1.0
+let volume = 0.5; //must be between 0.0 and 1.0
 let guessCounter = 0;
 
 //randomizing the pattern
-function randomize(){
+function randomize() {
   pattern = [];
-  for(let i = 0; i < 8; i++){
+  for (let i = 0; i < 8; i++) {
     pattern.push(Math.floor(Math.random() * 4) + 1);
   }
   console.log(pattern);
 }
 
-function startGame(){
+function startGame() {
   //initializing
   progress = 0;
   gamePlaying = true;
@@ -30,10 +30,10 @@ function startGame(){
   playClueSequence();
 }
 
-function stopGame(){
+function stopGame() {
   //initializing
   gamePlaying = false;
-  
+
   document.getElementById("startbtn").classList.remove("hidden");
   document.getElementById("stopbtn").classList.add("hidden");
 }
@@ -43,110 +43,108 @@ const freqMap = {
   1: 260,
   2: 358.6,
   3: 392,
-  4: 466.2
+  4: 466.2,
+};
+
+function playTone(btn, len) {
+  o.frequency.value = freqMap[btn];
+  g.gain.setTargetAtTime(volume, context.currentTime + 0.05, 0.025);
+  context.resume();
+  tonePlaying = true;
+  setTimeout(() => {
+    stopTone();
+  }, len);
 }
 
-function playTone(btn,len){ 
-  o.frequency.value = freqMap[btn]
-  g.gain.setTargetAtTime(volume,context.currentTime + 0.05,0.025)
-  context.resume()
-  tonePlaying = true
-  setTimeout(()=>{
-    stopTone()
-  },len)
-}
-
-function startTone(btn){
-  if(!tonePlaying){
-    context.resume()
-    o.frequency.value = freqMap[btn]
-    g.gain.setTargetAtTime(volume,context.currentTime + 0.05,0.025)
-    context.resume()
-    tonePlaying = true
+function startTone(btn) {
+  if (!tonePlaying) {
+    context.resume();
+    o.frequency.value = freqMap[btn];
+    g.gain.setTargetAtTime(volume, context.currentTime + 0.05, 0.025);
+    context.resume();
+    tonePlaying = true;
   }
 }
 
-function stopTone(){
-  g.gain.setTargetAtTime(0,context.currentTime + 0.05,0.025)
-  tonePlaying = false
+function stopTone() {
+  g.gain.setTargetAtTime(0, context.currentTime + 0.05, 0.025);
+  tonePlaying = false;
 }
 
 // Page Initialization
 // Init Sound Synthesizer
-let AudioContext = window.AudioContext || window.webkitAudioContext 
-let context = new AudioContext()
-let o = context.createOscillator()
-let g = context.createGain()
-g.connect(context.destination)
-g.gain.setValueAtTime(0,context.currentTime)
-o.connect(g)
-o.start(0)
+let AudioContext = window.AudioContext || window.webkitAudioContext;
+let context = new AudioContext();
+let o = context.createOscillator();
+let g = context.createGain();
+g.connect(context.destination);
+g.gain.setValueAtTime(0, context.currentTime);
+o.connect(g);
+o.start(0);
 
-function lightButton(btn){
-  document.getElementById("b"+btn).classList.add("lit")
+function lightButton(btn) {
+  document.getElementById("b" + btn).classList.add("lit");
 }
 
-function clearButton(btn){
-  document.getElementById("b"+btn).classList.remove("lit")
+function clearButton(btn) {
+  document.getElementById("b" + btn).classList.remove("lit");
 }
 
 // playing clues
-function playSingleClue(btn){
-  if(gamePlaying){
+function playSingleClue(btn) {
+  if (gamePlaying) {
     lightButton(btn);
-    playTone(btn,clueHoldTime);
-    setTimeout(clearButton,clueHoldTime,btn);
+    playTone(btn, clueHoldTime);
+    setTimeout(clearButton, clueHoldTime, btn);
   }
 }
 
-function playClueSequence(){
+function playClueSequence() {
   guessCounter = 0;
-  context.resume()
+  context.resume();
   let delay = nextClueWaitTime; //set delay to initial wait time
-  for(let i=0;i<=progress;i++){ // for each clue that is revealed so far
-    console.log("play single clue: " + pattern[i] + " in " + delay + "ms")
-    setTimeout(playSingleClue,delay,pattern[i]) // set a timeout to play that clue
-    delay += clueHoldTime;
-    delay += cluePauseTime;
+  for (let i = 0; i <= progress; i++) {
+    // for each clue that is revealed so far
+    console.log("play single clue: " + pattern[i] + " in " + delay + "ms");
+    setTimeout(playSingleClue, delay, pattern[i]); // set a timeout to play that clue
+    let tmpHold = clueHoldTime - progress * 20;
+    let tmpPause = cluePauseTime - progress * 20;
+    delay += tmpHold;
+    delay += tmpPause;
   }
 }
 
 //winning conditions
 
-function loseGame(){
+function loseGame() {
   stopGame();
   alert("Game Over. You lost.");
 }
 
-function winGame(){
+function winGame() {
   stopGame();
   alert("Game Over. You won!");
 }
 
-function guess(btn){
+function guess(btn) {
   console.log("user guessed: " + btn);
-  if(!gamePlaying){
-    return;
-  }
-  if(pattern[guessCounter] == btn){
-    //correct
-    if(guessCounter == progress){
-      if(progress == pattern.length - 1){
-        winGame();
-      }else{
-        //Pattern correct. Add next segment
-        progress++;
-        playClueSequence();
+  if (gamePlaying) {
+    if (pattern[guessCounter] == btn) {
+      //correct
+      if (guessCounter == progress) {
+        if (progress == pattern.length - 1) {
+          winGame();
+        } else {
+          //
+          progress++;
+          playClueSequence();
+        }
+      } else {
+        //next guess
+        guessCounter++;
       }
-    }else{
-      //so far so good... check the next guess
-      guessCounter++;
+    } else {
+      loseGame();
     }
-  }else{
-    loseGame();
   }
 }
-
-
-
-
