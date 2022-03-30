@@ -40,13 +40,17 @@ The following **additional** features are implemented:
 
 If you recorded multiple GIFs for all the implemented features, you can add them here:
 
-##### color and sound when clicked: ![](https://cdn.glitch.global/cdaa76b3-4e62-40fe-9f73-d1daa51f1ea7/color-sound.gif?v=1647415628859)
+##### color and sound when clicked: 
+![](https://cdn.glitch.global/cdaa76b3-4e62-40fe-9f73-d1daa51f1ea7/color-sound.gif?v=1647415628859)
 
-##### losing: ![](https://cdn.glitch.global/cdaa76b3-4e62-40fe-9f73-d1daa51f1ea7/lost.gif?v=1647415634261)
+##### losing: 
+![](https://cdn.glitch.global/cdaa76b3-4e62-40fe-9f73-d1daa51f1ea7/lost.gif?v=1647415634261)
 
-##### start and stop button: ![](https://cdn.glitch.global/cdaa76b3-4e62-40fe-9f73-d1daa51f1ea7/start-stop.gif?v=1647415636773)
+##### start and stop button: 
+![](https://cdn.glitch.global/cdaa76b3-4e62-40fe-9f73-d1daa51f1ea7/start-stop.gif?v=1647415636773)
 
-##### winning: ![](https://cdn.glitch.global/cdaa76b3-4e62-40fe-9f73-d1daa51f1ea7/win.gif?v=1647897215978)
+##### winning: 
+![](https://cdn.glitch.global/cdaa76b3-4e62-40fe-9f73-d1daa51f1ea7/win.gif?v=1647897215978)
 
 ## Reflection Questions
 
