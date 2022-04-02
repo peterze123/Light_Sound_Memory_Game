@@ -50,7 +50,7 @@ If you recorded multiple GIFs for all the implemented features, you can add them
 ![](https://cdn.glitch.global/cdaa76b3-4e62-40fe-9f73-d1daa51f1ea7/start-stop.gif?v=1647415636773)
 
 ##### winning: 
-![](https://cdn.glitch.global/cdaa76b3-4e62-40fe-9f73-d1daa51f1ea7/win.gif?v=1647897215978)
+![](https://cdn.glitch.global/cdaa76b3-4e62-40fe-9f73-d1daa51f1ea7/win.gif?v=1648861640098)
 
 ## Reflection Questions
 
@@ -73,7 +73,7 @@ If you recorded multiple GIFs for all the implemented features, you can add them
 
 ## Interview Recording URL Link
 
-[My 5-minute Interview Recording](your-link-here)
+[https://www.loom.com/share/2dd314e89b41414fa56df7277c41f02c](https://www.loom.com/share/2dd314e89b41414fa56df7277c41f02c)
 
 ## License
 
