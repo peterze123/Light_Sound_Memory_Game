@@ -50,7 +50,7 @@ If you recorded multiple GIFs for all the implemented features, you can add them
 ![](https://cdn.glitch.global/cdaa76b3-4e62-40fe-9f73-d1daa51f1ea7/start-stop.gif?v=1647415636773)
 
 ##### winning: 
-![](https://cdn.glitch.global/cdaa76b3-4e62-40fe-9f73-d1daa51f1ea7/win.gif?v=1648861640098)
+![](https://cdn.glitch.global/cdaa76b3-4e62-40fe-9f73-d1daa51f1ea7/win.gif?v=1648862454048)
 
 ## Reflection Questions
 
